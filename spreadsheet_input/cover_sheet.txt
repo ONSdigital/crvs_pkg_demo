@@ -1,0 +1,10 @@
+!birth_excel_title!
+Source: !source!
+Released: !release_date!
+Things you need to know
+These data are complementary to the Vital Statistics Report.
+Some tables refer to notes. When notes are mentioned the note marker is presented in square brackets. The note text can be found in the notes table.
+Contact details:
+!contact_email!
+!contact_phone!
+© Copyright !publication_copyright_yr!
