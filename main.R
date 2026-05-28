@@ -2,9 +2,7 @@
 
 source("config.R")
 source("excel_user_input.R")
-devtools::document("crvs.pkg")
-devtools::load_all("crvs.pkg")
-devtools::test("crvs.pkg")
+library(crvs.pkg)
 
 data_lookup <- read.csv("inputs/data_dictionary.csv", na.strings = "")
 
