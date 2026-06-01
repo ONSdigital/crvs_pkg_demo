@@ -20,6 +20,6 @@ Click "Yes".
 
 The report will open in Word.
 
-You **MUST** now open print preview (*ctrl* + *P*) as this is required to make all the page numbers in the contents update correctly.
+You **MUST** now open print preview (*ctrl* + *P*) or use (*ctrl* + *A*) followed by F9, selecting "Update Entire Table" and *Enter*, as this is required to make all the page numbers in the contents update correctly.
 
 -   There is a way to automate this with VBA but not done yet as more technical.
