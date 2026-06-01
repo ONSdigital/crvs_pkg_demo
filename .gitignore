@@ -7,7 +7,11 @@ WIP*
 
 # Exceptions
 !inputs/data_dictionary.csv
-
+!inputs/template.docx
+!spreadsheet_input/contents.txt
+!spreadsheet_input/cover_sheet.txt
+!spreadsheet_input/notes.txt
+!spreadsheet_input/report_acronyms.csv
 
 # History files
 .Rhistory

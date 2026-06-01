@@ -1,0 +1,369 @@
+---
+title: "Vital Statistics Report - Births"
+author: "<Your Statistical Organisation>"
+date: "<Insert Date Here>"
+output:
+  officedown::rdocx_document:
+    number_sections: true
+    toc: false
+    reference_docx: inputs/template.docx
+    tables:
+      style: Table
+      layout: autofit
+      width: 1.0
+      topcaption: true
+      tab.lp: 'tab:'
+      caption:
+        style: Table Caption
+        pre: 'Table '
+        sep: ': '
+        tnd: 0 # Default is 0
+        tns: '-'
+        fp_text: !expr officer::fp_text_lite(bold = TRUE)
+      conditional:
+        first_row: true
+        first_column: false # Default is false
+        last_row: false
+        last_column: false
+        no_hband: false
+        no_vband: true
+    plots:
+      style: Normal
+      align: center
+      fig.lp: 'fig:'
+      topcaption: true # Default is false
+      caption:
+        style: Image Caption
+        pre: 'Figure '
+        sep: ': '
+        tnd: 0
+        tns: '-'
+        fp_text: !expr officer::fp_text_lite(bold = TRUE)
+    lists:
+      ol.style: null
+      ul.style: null
+    #mapstyles:
+      #Normal: ['First Paragraph', 'Author', 'Date']
+    page_size: # In inches
+      width: 8.3 # A4
+      height: 11.7 # A4
+      orient: "portrait"
+    page_margins: # In inches
+      bottom: 1
+      top: 1
+      right: 0.5
+      left: 0.5
+      header: 0.5
+      footer: 0.5
+      gutter: 0.5
+    reference_num: true
+---
+
+```{r setup, include=FALSE}
+options(encoding = "UTF-8")
+
+library(officedown)
+library(officer)
+library(flextable)
+library(bookdown)
+library(ggplot2)
+
+source("main.R")
+source("create_excel.R")
+source("report_config.R")
+
+# Required for numbering
+options(
+  bookdown.internal.label = TRUE)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+\pagebreak
+
+
+# General
+
+
+## Table of contents {#contents}
+
+<!---BLOCK_TOC--->
+
+\pagebreak
+
+## List of figures
+
+<!---BLOCK_TOC{seq_id: 'fig'}--->
+
+\pagebreak
+
+## List of tables
+
+<!---BLOCK_TOC{seq_id: 'tab'}--->
+
+\pagebreak
+
+## Acknowledgements
+
+\pagebreak
+
+## Acronyms
+
+*All acronyms and abbreviations used in the report should be listed, especially country-specific terms. Update the list below in the "spreadsheet_input/report_acronyms.csv".*
+
+```{r echo = FALSE, warning = FALSE}
+read.csv("spreadsheet_input/report_acronyms.csv")
+```
+
+\pagebreak
+
+
+## Definitions
+
+*It is useful to include a list of definitions used in the report, especially for terms with varying definitions internationally, or any terms that are country-specified. Update the list below, including any country-specific definitions used and then delete this text box by clicking on the three dots to the left of the box and pressing ‘delete’ on the keyboard.*
+
+**Age-specific fertility rate (ASFR):** The annual number of births to women of a particular age group per 1,000 women in that age group. 
+
+**Completeness of registration:** The proportion of vital events that are registered. It is the number of registered vital events divided by an estimate of the actual number of vital events that occurred in the same population during a specific period of time. 
+
+**Crude birth rate (CBR):** The number of live births relative to the size of that population during a given period, usually one year. It is expressed as the number of live births per 1,000 population per year. 
+
+**Foetal death (also referred to as ‘stillbirth’):** ‘Death prior to the complete expulsion or extraction from the mother of a product of conception, irrespective of the duration of pregnancy; the death is indicated by the fact that after such separation the foetus does not breathe or show any other evidence of life, such as beating of the heart, pulsation of the umbilical cord or definite movement of voluntary muscles.’2 Note that this definition broadly includes all terminations of pregnancy other than live births, as defined above. 
+
+**Live birth:** ‘The complete expulsion or extraction from the mother of a product of conception, irrespective of the duration of pregnancy, which, after such separation, breathes or shows any other evidence of life, such as beating of the heart, pulsation of the umbilical cord, or definite movement of voluntary muscles, whether or not the umbilical cord has been cut or the placenta is attached; each product of such a birth is considered live born (all live-born infants should be registered and counted as such, irrespective of gestational age or whether alive or dead at the time of registration, and if they die at any time following birth, they should also be registered and counted as deaths).’
+
+**Sex ratio at birth:** The number of male births for a specific area and during a specified period divided by the number of female births for the same area and period. The sex ratio is an important demographic indicator of the distribution of boys and girls at birth. 
+
+**Total fertility rate (TFR):** The sum of age-specific fertility rates for females aged between 15 and 49 years during a specified period, usually one year. It is an estimate of the average number of children a cohort of women would bear if they went through their childbearing years experiencing the same age-specific fertility rates. 
+
+\pagebreak
+
+# Data quality, timeliness of registration, and registration completeness
+
+*ENTER TEXT HERE. Insert a summary paragraph of key findings from this chapter. Focus on the overall quality of the data for use in policy and planning—are there any significant data quality issues? Does the report cover delayed or late registrations for each year? What are the key points regarding completeness? How complete are the data and if completeness is low, were the data adjusted?* 
+
+## Data quality
+
+*ENTER TEXT HERE. Refer to Chapter 3, page 29 of the Guide for instructions and examples of what to include in this section.*
+
+## Timeliness of registration
+
+*SECTION IS OPTIONAL. If data on the timeliness of registration (or extent of delayed registration) are available, present it here. The table provided is for annual data, however if a ‘late’ registration is defined as seven or 30 (or X) days after the event, update the table to match the system.* 
+
+*Remember to state if the report uses only current registration data (from events occurring in that year) or includes both current and late registrations.*
+
+A late registration is the registration of a vital event after the legally specified time period but within the grace period (usually one year following the vital event). Delayed registration is the registration of a vital event after the grace period has expired. *ENTER TEXT HERE. Describe the tables below—has there been an improvement in timeliness of registration over time? What may have contributed to this? Also comment on if there are any major differences for births and deaths.* 
+
+**TABLE**
+
+\pagebreak
+
+## Completeness of registration
+
+Calculating the completeness of registration can be used to monitor the performance of the CRVS system in capturing all vital events and allows for adjustment of incomplete data. Completeness is defined as the number of vital events in a population that are registered, divided by the estimated number of vital events that occurred in the same year. The value is multiplied by 100 to express completeness as a per cent: 
+
+
+$$
+\text{Completeness (\%)} = \frac{\text{Number of vital events registered}}{\text{Estimated number of vital events}} \times 100
+$$
+### Birth registration
+
+*ENTER TEXT HERE. Describe how completeness was calculated (where was the ‘estimated number of births’ sourced from) and whether any adjustments were subsequently made to future calculations. Discuss if there have been significant changes/improvements over time. Also note any major differences between males and females (if data is available). If data by sex are not available, just present the data for ‘total’ births.* 
+
+TABLE
+
+*ENTER TEXT HERE. If data are available, note whether there was any difference in reporting completeness by geographic region. Also note any major differences between males and females (if data are available). If data by sex is not available, just present the data for ‘total’ births.*
+
+\pagebreak
+
+
+# Births
+
+*ENTER TEXT HERE. Describe the table below – how has fertility changed over time? Are women giving birth at older or younger ages? Has there been an increase in registration completeness?* 
+
+**TAB4.1**
+
+
+## Births by place of occurrence
+
+*ENTER TEXT HERE. Discuss the number of live births by sex of newborn and place of occurrence. Refer to Chapter 4, page 41, of the Guide for more information and example text. Where do most births occur? Does this make sense (in terms of major hospitals/cities) for the country? Are there any major differences in the sex ratio by place of occurrence? Also discuss the average number of births per year, along with other interesting information such as whether there has been any significant change over time. Remember to refer to the completeness of registration, as changes in the number of births might reflect changes in completeness over time.*
+
+
+```{r tab.cap=paste("Live births by place of occurrence and sex of newborn,", max(birth_fcts$year)), tab.id = "lb_pob_sex", echo=FALSE}
+
+tab4_2 <- tab4_2 |>
+  dplyr::filter(Year == max(birth_fcts$year)) |>
+  dplyr::select(-Year) |>
+  tidyr::pivot_wider(
+    names_from = Sex,
+    values_from = `Counts of live births`
+  ) |>
+  dplyr::mutate(
+    `Sex ratio at birth` = round(Male / Female, 2),
+    `Registration completeness (%)` = "TO COMPLETE"
+  ) |>
+  dplyr::rename(
+    `Place of occurrence` = "Place of birth",
+    `Total number of live births` = "All sexes",
+    Unknown = "Not stated"
+  ) |>
+  dplyr::arrange(`Place of occurrence` == "Country") |>
+  dplyr::mutate(`Place of occurrence` = dplyr::if_else(
+    `Place of occurrence` == "Country", "Grand total", `Place of occurrence`
+  ))
+
+# ft <- flextable(tab4_2)
+# 
+# ft <- set_caption(
+#   ft,
+#   caption = "Live births by place of occurrence and sex of newborn",
+#   autonum = run_autonum(seq_id = "tab", pre_label = "Table ", post_label = ": ")
+# )
+# 
+# ft |>
+#   add_footer_lines(values = paste("Source:", tab_src$bths)) |>
+#   italic(part = "footer") |>
+#   align(part = "footer", align = "left")
+
+tab4_2
+
+```
+
+
+
+## Births by place of occurrence and place of usual residence of mother
+
+*ENTER TEXT HERE. Describe the distribution of births by the place of occurrence and place of usual residence of the mother. Which place accounts for the highest proportion of births? Are there significant variations in births by place of occurrence and usual residence of mother within the country?*
+
+### **THIS TABLE NEEDS REFORMATTING ON THE MAIN**
+
+```{r tab.cap=paste("Live births by place of occurrence and place of usual residence of mother,", max(birth_fcts$year)), tab.id = "lb_pob_pour", echo=FALSE}
+
+message("THIS TABLE NEEDS REFORMATTING ON THE MAIN AS IT LOOKS FOR THOSE OCURRENCES AT SAME PLACE BETWEEN POB AND POUR")
+
+```
+
+
+## Births by age of mother
+
+*ENTER TEXT HERE. Comment on the table below—overall, what proportion of births are single babies and what proportion are multiple (twins, triplets, etc)? Does this distribution change depending on the age of the mother? For example, do more multiple births occur among older or younger mothers?*
+
+### **THIS TABLE NEEDS REFORMATTING ON THE MAIN**
+
+
+```{r tab.cap=paste("Live births by age of mother and type of birth,", max(birth_fcts$year)), tab.id = "lb_agem_multi", echo=FALSE}
+
+message("THIS TABLE NEEDS REFORMATTING ON THE MAIN")
+
+```
+
+*ENTER TEXT HERE. Comment on the table below – what age group contributes the highest proportion of births? If data are available by urban/rural – are there any major differences? (If data by urban/rural are not available, delete the second table and provide data for the whole country in the first table.) Does the age of the mother differ depending on her marital status? For example, are most single mothers younger or older? Is this the same for mothers who are married or in a union?*
+
+```{r tab.cap=paste("Live births by age and marital status of mother, urban areas", max(birth_fcts$year)), tab.id = "lb_agem_urb", echo=FALSE}
+
+tab4_5 |>
+  dplyr::filter(Year == max(birth_fcts$year)) |>
+  dplyr::select(-Year, -`Urban or rural`) |>
+  tidyr::pivot_wider(
+    names_from = `Marital status`,
+    names_prefix = "Marital status of mother ",
+    values_from = `Counts of live births`
+  ) |>
+  dplyr::rename(
+    `Mother's age group (years)` = `Mothers age`
+  )
+
+```
+
+
+```{r tab.cap=paste("Live births by age and marital status of mother, rural areas", max(birth_fcts$year)), tab.id = "lb_agem_rur", echo=FALSE}
+
+tab4_6 |>
+  dplyr::filter(Year == max(birth_fcts$year)) |>
+  dplyr::select(-Year, -`Urban or rural`) |>
+  tidyr::pivot_wider(
+    names_from = `Marital status`,
+    names_prefix = "Marital status of mother ",
+    values_from = `Counts of live births`
+  ) |>
+  dplyr::rename(
+    `Mother's age group (years)` = `Mothers age`
+  )
+
+```
+
+*ENTER TEXT HERE. Comment on any major changes over time (are mothers getting older or younger?)  Comment on any major differences by residence of the mother.*
+
+**FIGURE**
+
+<!---BLOCK_LANDSCAPE_START--->
+
+## Births by site of delivery
+
+*ENTER TEXT HERE. Describe whether births usually occur in a health facility or elsewhere. Does the site of delivery (hospital, home, etc) have an impact on the type of attendant at birth (physician, nurse, etc)? If the data are available by place of occurrence (urban/rural or lower administrative division) include this in the table and comment on any major differences by place. If data by place are not available, provide data for the whole country (‘all births’) and delete the additional rows.*
+
+```{r tab.cap=paste("Live births by place of occurrence, site of delivery and attendant at birth,", max(birth_fcts$year)), tab.id = "lb_pob_pobt_attendant", echo=FALSE}
+
+tab4_7 |>
+  dplyr::filter(Year == max(birth_fcts$year)) |>
+  dplyr::select(-Year) |>
+  tidyr::pivot_wider(
+    names_from = `Birth attendant`,
+    values_from = `Counts of live births`
+  ) |>
+  dplyr::rename(
+    `Place of occurrence and site of delivery` = `Place of birth`
+  )
+
+```
+
+<!---BLOCK_LANDSCAPE_STOP--->
+
+## Crude birth rate
+
+The crude birth rate (CBR) is the number of live births per 1,000 population over a given period (usually one year). When combined with the crude death rate and net migration, crude birth rates can tell us how much the population is increasing or decreasing. They can also help with planning and resource allocation by providing important information such as how many children will be entering school in the coming years, or how many adults will be entering the workforce.   
+
+*ENTER TEXT HERE. Discuss the trend (remember to use adjusted data when calculating the CBR). If the CBR is increasing or decreasing, is this because the number of births is changing substantially (refer to the number of births in the previous section), or is it because of changes in the population size (i.e. out-migration)? Are there any major differences in the CBR by place of usual residence of the mother?*
+
+```{r tab.cap=paste("Live births by place of occurrence, site of delivery and attendant at birth,", max(birth_fcts$year)), tab.id = "cbr_pour", echo=FALSE}
+
+tab4_8 |>
+  dplyr::filter(Year == max(birth_fcts$year)) |>
+  dplyr::select(-Year) |>
+  dplyr::rename(
+    `Unadjusted counts of live births` = "Counts of live births"
+  ) |>
+  dplyr::mutate(
+    `Adjusted counts of live births` = rep("THIS MUST BE CALCULATED FROM COMPLETENESS"))
+
+```
+
+*ENTER TEXT HERE. If data by urban/rural are available, comment on any major differences. If providing a graph with comparator data (from a census or survey), comment on any major differences between the calculated CBR and estimates – what does this mean in terms of data quality?*
+
+**FIGURE**
+
+## Age-specific fertility rates
+
+Fertility rates by mothers’ age group, or age-specific fertility rates (ASFRs), are the number of births occurring to mothers of a certain age group per 1,000 women in that age group in a given period (usually one year).
+
+*ENTER TEXT HERE. Remember to calculate the ASFRs using the adjusted number of live births. Describe the ASFRs in the table below, noting whether adolescent birth rates are high. If data are available by urban/rural place of residence, do the rates differ? If data are not available by urban/rural, delete the second table and provide data for the total country in the first table.*
+
+### **MUST RE-DO THESE**
+
+*ENTER TEXT HERE. Describe the trend over time: At what age is fertility the highest? How has this changed over time? Are women giving birth at older or younger ages?*
+
+**FIGURE**
+
+## Total fertility rate
+
+The total fertility rate (TFR) is the average number of children a woman would give birth to during her lifetime if she were to pass through her childbearing years experiencing present-day age-specific fertility rates.
+
+*ENTER TEXT HERE. Is the TFR increasing or decreasing over time? What does this mean? Compare the calculated TFR to the most recent census and/or survey and discuss plausibility.*
+
+**FIGURE**
+
+*ENTER TEXT HERE. Comment on the table – are there any major differences by place of usual residence of mother?*
+
+### **NEED TO DO THIS TABLE**
+
